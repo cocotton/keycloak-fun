@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: ch4ng3m3!
+    ports:
+    - "443:8443"
+    networks:
+    - keycloak
+
+networks:
+  keycloak:
+    driver: bridge
