@@ -1,6 +1,10 @@
+require('dotenv').config();
+
 var request = require('request');
 var express = require('express');
 var router = express.Router();
+
+const OIDC_BASE_URI = process.env.OIDC_BASE_URI
 
 /*
   ALL OF THE ROUTES IN THIS PAGE REQUIRE AN AUTHENTICATED USER
@@ -20,7 +24,7 @@ router.get('/', function(req, res, next) {
 /* GET the profile of the current authenticated user */
 router.get('/profile', function(req, res, next) {
 
-  request.get(`https://openid-connect.onelogin.com/oidc/me`, {
+  request.get(`${OIDC_BASE_URI}/userinfo`, {
     'auth': {
       'bearer': req.session.accessToken
     }
