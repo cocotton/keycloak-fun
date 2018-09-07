@@ -10,23 +10,23 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 // Use Passport with OpenId Connect strategy to
-// authenticate users with OneLogin
+// authenticate users with Keycloak
 var passport = require('passport')
-var OneLoginStrategy = require('passport-openidconnect').Strategy
+var KeycloakLoginStrategy = require('passport-openidconnect').Strategy
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-const OIDC_BASE_URI = `https://openid-connect.onelogin.com/oidc`;
+const OIDC_BASE_URI = process.env.OIDC_BASE_URI
 
 // Configure the OpenId Connect Strategy
-// with credentials obtained from OneLogin
-passport.use(new OneLoginStrategy({
+// with credentials obtained from Keycloak
+passport.use(new KeycloakLoginStrategy({
   issuer: OIDC_BASE_URI,
   clientID: process.env.OIDC_CLIENT_ID,
   clientSecret: process.env.OIDC_CLIENT_SECRET,
   authorizationURL: `${OIDC_BASE_URI}/auth`,
-  userInfoURL: `${OIDC_BASE_URI}/me`,
+  userInfoURL: `${OIDC_BASE_URI}/userinfo`,
   tokenURL: `${OIDC_BASE_URI}/token`,
   callbackURL: process.env.OIDC_REDIRECT_URI,
   passReqToCallback: true
@@ -79,7 +79,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Middleware for checking if a user has been authenticated
-// via Passport and OneLogin OpenId Connect
+// via Passport and Keycloak OpenId Connect
 function checkAuthentication(req,res,next){
   if(req.isAuthenticated()){
       next();
@@ -92,15 +92,15 @@ app.use('/', index);
 // Only allow authenticated users to access the /users route
 app.use('/users', checkAuthentication, users);
 
-// Initiates an authentication request with OneLogin
-// The user will be redirect to OneLogin and once authenticated
+// Initiates an authentication request with Keycloak
+// The user will be redirect to Keycloak and once authenticated
 // they will be returned to the callback handler below
 app.get('/login', passport.authenticate('openidconnect', {
   successReturnToOrRedirect: "/",
   scope: 'email profile'
 }));
 
-// Callback handler that OneLogin will redirect back to
+// Callback handler that Keycloak will redirect back to
 // after successfully authenticating the user
 app.get('/oauth/callback', passport.authenticate('openidconnect', {
   callback: true,
@@ -109,10 +109,10 @@ app.get('/oauth/callback', passport.authenticate('openidconnect', {
 }))
 
 // Destroy both the local session and
-// revoke the access_token at OneLogin
+// revoke the access_token at Keycloak
 app.get('/logout', function(req, res){
 
-  request.post(`https://openid-connect.onelogin.com/oidc/token/revocation`, {
+  request.post(`${OIDC_BASE_URI}/logout`, {
     'form':{
       'client_id': process.env.OIDC_CLIENT_ID,
       'client_secret': process.env.OIDC_CLIENT_SECRET,
@@ -121,7 +121,7 @@ app.get('/logout', function(req, res){
     }
   },function(err, respose, body){
 
-    console.log('Session Revoked at OneLogin');
+    console.log('Session Revoked at Keycloak');
     res.redirect('/');
 
   });
