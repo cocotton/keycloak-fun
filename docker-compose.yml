@@ -10,6 +10,13 @@ services:
     - "443:8443"
     networks:
     - keycloak
+  oidc-expressjs:
+    build:
+      context: oidc-expressjs/
+    ports:
+    - "3000:3000"
+    networks:
+    - keycloak
 
 networks:
   keycloak:
