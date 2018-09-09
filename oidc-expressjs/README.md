@@ -13,12 +13,12 @@ implements
 * User Info - fetching profile information from Keycloak
 
 ## Run
-This sample uses an express app running on nodejs.
+First update the .env file with the informations from your Keycloak clients.
 
-From the command line run
+You can then build and run this app with Docker by running
 ```
-> npm install
-> npm start
+docker build -t oidc-expressjs .
+docker run -p 3000:3000 -d oidc-expressjs
 ```
 
 ### Local testing
