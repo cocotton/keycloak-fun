@@ -13,7 +13,7 @@ implements
 * User Info - fetching profile information from Keycloak
 
 ## Run
-First update the .env file with the informations from your Keycloak clients.
+First update the .env file with the informations from your Keycloak client.
 
 You can then build and run this app with Docker by running
 ```

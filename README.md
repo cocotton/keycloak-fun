@@ -2,7 +2,7 @@
 
 ## Requirements
 ### oidc-expressjs
-In the oidc-expressjs directory, update the .env file content
+Update the oidc-expressjs/.env file with the informations from your Keycloak client.
 
 ## Run
 
