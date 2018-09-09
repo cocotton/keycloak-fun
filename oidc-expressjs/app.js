@@ -1,3 +1,7 @@
+// Keycloak uses dynamic self-signed certificate in this demo, so we do
+// not reject the certificate
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 require('dotenv').config();
 
 var request = require('request');
@@ -17,12 +21,12 @@ var KeycloakLoginStrategy = require('passport-openidconnect').Strategy
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-const OIDC_BASE_URI = process.env.OIDC_BASE_URI
+const OIDC_BASE_URI = `${process.env.OIDC_ISSUER_URI}/protocol/openid-connect`
 
 // Configure the OpenId Connect Strategy
 // with credentials obtained from Keycloak
 passport.use(new KeycloakLoginStrategy({
-  issuer: OIDC_BASE_URI,
+  issuer: process.env.OIDC_ISSUER_URI
   clientID: process.env.OIDC_CLIENT_ID,
   clientSecret: process.env.OIDC_CLIENT_SECRET,
   authorizationURL: `${OIDC_BASE_URI}/auth`,

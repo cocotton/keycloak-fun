@@ -4,7 +4,7 @@ var request = require('request');
 var express = require('express');
 var router = express.Router();
 
-const OIDC_BASE_URI = process.env.OIDC_BASE_URI
+const OIDC_BASE_URI = `${process.env.OIDC_ISSUER_URI}/protocol/openid-connect`
 
 /*
   ALL OF THE ROUTES IN THIS PAGE REQUIRE AN AUTHENTICATED USER
