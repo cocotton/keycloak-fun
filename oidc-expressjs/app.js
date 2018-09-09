@@ -26,7 +26,7 @@ const OIDC_BASE_URI = `${process.env.OIDC_ISSUER_URI}/protocol/openid-connect`
 // Configure the OpenId Connect Strategy
 // with credentials obtained from Keycloak
 passport.use(new KeycloakLoginStrategy({
-  issuer: process.env.OIDC_ISSUER_URI
+  issuer: process.env.OIDC_ISSUER_URI,
   clientID: process.env.OIDC_CLIENT_ID,
   clientSecret: process.env.OIDC_CLIENT_SECRET,
   authorizationURL: `${OIDC_BASE_URI}/auth`,
