@@ -2,7 +2,7 @@
 
 ## Requirements
 ### oidc-expressjs
-In the oidc-expressjs directory, move .env.sample to .env and update its content
+In the oidc-expressjs directory, update the .env file content
 
 ## Run
 
