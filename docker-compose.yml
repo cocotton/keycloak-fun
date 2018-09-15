@@ -41,6 +41,17 @@ services:
     depends_on:
       - elasticsearch
 
+  elasticsearch-data:
+    build:
+      context: elasticsearch-data/
+    environment:
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: ch4ng3m3!
+    networks:
+      - keycloak
+    depends_on:
+      - elasticsearch
+      - kibana
 
   oidc-expressjs:
     build:
