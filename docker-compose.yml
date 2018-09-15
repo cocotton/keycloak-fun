@@ -27,6 +27,21 @@ services:
     networks:
       - keycloak
 
+  kibana:
+    build:
+      context: kibana/
+      args:
+        ELK_VERSION: 6.4.0
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    ports:
+      - "5601:5601"
+    networks:
+      - keycloak
+    depends_on:
+      - elasticsearch
+
+
   oidc-expressjs:
     build:
       context: oidc-expressjs/
