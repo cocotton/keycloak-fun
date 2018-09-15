@@ -10,6 +10,23 @@ services:
     - "443:8443"
     networks:
     - keycloak
+
+  elasticsearch:
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: 6.4.0
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx2048m -Xms2048m"
+      ELASTIC_PASSWORD: ch4ng3m3!
+    networks:
+      - keycloak
+
   oidc-expressjs:
     build:
       context: oidc-expressjs/
