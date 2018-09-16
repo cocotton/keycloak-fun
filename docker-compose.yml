@@ -7,7 +7,7 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: ch4ng3m3!
     ports:
-    - "443:8443"
+    - "8443:8443"
     networks:
     - keycloak
 
@@ -23,7 +23,6 @@ services:
       - ./certs/client.key:/usr/share/elasticsearch/config/client.key:ro
     ports:
       - "9200:9200"
-      - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx2048m -Xms2048m"
       ELASTIC_PASSWORD: ch4ng3m3!
