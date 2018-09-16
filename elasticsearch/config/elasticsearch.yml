@@ -29,7 +29,7 @@ xpack.ssl.certificate_authorities: /usr/share/elasticsearch/config/ca.crt
 
 xpack.security.authc.realms.saml1:
   type: saml
-  order: 2
+  order: 0
   idp.metadata.path: kibana-saml-idp.xml
   idp.entity_id: "https://keycloak:8443/auth/realms/Demo"
   sp.entity_id:  "kibana-saml"
