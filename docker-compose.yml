@@ -23,6 +23,7 @@ services:
         ELK_VERSION: 6.4.0
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./elasticsearch/config/kibana-saml-idp.xml:/usr/share/elasticsearch/config/kibana-saml-idp.xml:ro
       - ./certs/ca.crt:/usr/share/elasticsearch/config/ca.crt:ro
       - ./certs/client.crt:/usr/share/elasticsearch/config/client.crt:ro
       - ./certs/client.key:/usr/share/elasticsearch/config/client.key:ro

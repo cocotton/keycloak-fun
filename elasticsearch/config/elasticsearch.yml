@@ -30,7 +30,7 @@ xpack.ssl.certificate_authorities: /usr/share/elasticsearch/config/ca.crt
 xpack.security.authc.realms.saml1:
   type: saml
   order: 2
-  idp.metadata.path: /usr/share/elasticsearch/config/idp-metadata.xml
+  idp.metadata.path: /usr/share/elasticsearch/config/kibana-saml-idp.xml
   idp.entity_id: "idp"
   sp.entity_id:  "kibana-saml"
   sp.acs: "https://kibana:5601/api/security/v1/saml"
