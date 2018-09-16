@@ -16,12 +16,12 @@ until curl -k https://kibana:5601 > /dev/null 2>&1; do echo "."; sleep 2; done
 echo "Done"
 
 echo "Uploading test data..."
-curl -k --user "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}" -XPOST -H 'Content-Type: application/x-ndjson' 'http://elasticsearch:9200/bank/account/_bulk?pretty' --data-binary @/root/accounts.json
+curl -k --user "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}" -XPOST -H 'Content-Type: application/x-ndjson' 'https://elasticsearch:9200/bank/account/_bulk?pretty' --data-binary @/root/accounts.json
 echo "Done"
 
 echo "Creating index pattern..."
 curl -k --user "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}" -s -XPOST -H "Content-Type: application/json" -H "kbn-xsrf: index_pattern" \
-    "http://kibana:5601/api/saved_objects/index-pattern/bank*" \
+    "https://kibana:5601/api/saved_objects/index-pattern/bank*" \
     -d "{\"attributes\":{\"title\":\"bank*\"}}"
 echo "Done"
 
