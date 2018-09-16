@@ -20,3 +20,6 @@ discovery.type: single-node
 #
 xpack.license.self_generated.type: trial
 xpack.security.enabled: true
+xpack.security.http.ssl.key: /usr/share/elasticsearch/config/client.key
+xpack.security.http.ssl.certificate: /usr/share/elasticsearch/config/client.crt
+xpack.security.http.ssl.certificate_authorities: [ "/usr/share/elasticsearch/config/ca.crt" ]
