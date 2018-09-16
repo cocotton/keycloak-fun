@@ -1,33 +1,27 @@
-<keycloak-saml-adapter>
-    <SP entityID="kibana-saml"
-        sslPolicy="EXTERNAL"
-        logoutPage="SPECIFY YOUR LOGOUT PAGE!">
-        <Keys>
-            <Key signing="true">
-                <PrivateKeyPem>
-                    MIIEpQIBAAKCAQEAjjV/mDmsWz0LKI66R47GwoZ0dCRbGqamAB55ESqRUq1lzJ3Fh6cgoyJC1KldfAxR/RUn8yU/k/Z1kaeaHSK+Ho5cS7tSS3wvkmTLQ22y/PCaK0lrVujgi1ktPve0QtBkfNnvIi3+p98jApkyq8BriCxU06I3K/NO6rbPEBnSWNg61utBvwLqRjfOFXd09cviUAfSu0vDL9g0Ykf+3CzAyqPISxPStjLs+LJnJwiLz47nD4Ez2iSmv7NIPPONu7bWIMercLiKqPYxmsnTNHHg09vSqzI9HiVZ3ruhFmmc7MQSvMQoQ3vsEOrbY8BoWmpSaq66cgtRom/6bY9wx6CfAQIDAQABAoIBAQCJsPUFEDp48Ob/8wocRPrf2E2jMpxfdqHeFaNFYsDom2mor85VJRXtvjuVKxOQC2HLORPAUf14Jzb4u531vfD1JwPoc8wfuHNbPGqus+WNEO1FIkZjFQJtCgBMKoyH8LyLQnxOzNf39I4ycuDj+WBkrf/IFhVzYZa0niJoxYesauK61+OSl88RG4wdx6FO3HqdOMXTjgBvgJXWZ0Ok3wycaoN9pXaAbV6Jaw/ErORMqbr4ozKcgnoZIWX58iYP77NDWXjFZrr+UJmYycVBjXoDlgJ7SOU9ctZAVc659lXMTYFrbamQ3mxvlZlAIXxEi+IbtX6jNS1Yy3eBzOly+IwtAoGBAN73sqMTbL185y8xxZriCFMlbofZ5/6t1qFiO3yIT+Ozg6hnMYxSc9oShUO7ycqZIDDlIur9xdU2TOmlhvoT5vuwyAQq4YYqNSDRkJ+obUWDgM067UutkmHZZckC/XLRQwhPX5V2dX4mfyvjNAchHyQgMSqszBpyxni0fVNbj/rrAoGBAKNG8BrJBhXV1L+5RkaCt7RS8uhNvbe2fjbY9ad+3LVYlRfPB85T4kHwyMVa3v3JRlluKjpzh3yDpygiZzLud29/pyvkATkwCp/TmSugTs7s1gMnZz7AszqPCzRGHzv9OZn7Zt53k9gpEOOXPh+wimBYzEMs6RJgeHOoeMOZAfrDAoGBAIUFa/rkrNxDtz0tyYGE1oicbVv5QfJsTf9MNscuH9NuFt8SaboYuutgX0cwssv/HPhuy608p5lzYuGGEogB9a01I69w0cmURswEmu7VshNlyCMow8eBjzJ3W8VX1lN4yzAbAqCN4rzXRMmvLCwQs55+4jZejwo8bXI35AkmODjvAoGAI/fLisr/2S2KuVVyIrRHDaU8N2pwwZilAyYWL3il3BkQdvc3a/9Ul1wYjkkvWE7PfYHkMY4jqY1C9HdnrnOTwe8n/2Yx0sw/eufdFRwyYCkSGA3FE7DViq/aMwDDfq6Q0tfr2FQVMIgTXV+C4u47/W9yR9YL3e18e1YAjG4XXosCgYEAsdcqqZIwdcE8RssRu2VswVAtS3mV6b8ePK4/i/fK29YZDjVDIr9dGKvHE0I9tSYFCpdstQ3LyFQ9HVByeF+FVZsohrZDXeJupiORG4j+8SRJx+f+FuQ4eeSE25QdWbswMi/HSsYq0kXr/xXBtmYIcD4Y5+yIBr29Bf80Jbg8G/E=
-                </PrivateKeyPem>
-                <CertificatePem>
-                    MIICpTCCAY0CBgFl4C+MYzANBgkqhkiG9w0BAQsFADAWMRQwEgYDVQQDDAtraWJhbmEtc2FtbDAeFw0xODA5MTYwMjIwMzdaFw0yODA5MTYwMjIyMTdaMBYxFDASBgNVBAMMC2tpYmFuYS1zYW1sMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjjV/mDmsWz0LKI66R47GwoZ0dCRbGqamAB55ESqRUq1lzJ3Fh6cgoyJC1KldfAxR/RUn8yU/k/Z1kaeaHSK+Ho5cS7tSS3wvkmTLQ22y/PCaK0lrVujgi1ktPve0QtBkfNnvIi3+p98jApkyq8BriCxU06I3K/NO6rbPEBnSWNg61utBvwLqRjfOFXd09cviUAfSu0vDL9g0Ykf+3CzAyqPISxPStjLs+LJnJwiLz47nD4Ez2iSmv7NIPPONu7bWIMercLiKqPYxmsnTNHHg09vSqzI9HiVZ3ruhFmmc7MQSvMQoQ3vsEOrbY8BoWmpSaq66cgtRom/6bY9wx6CfAQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQA1EWKrIawd+jiYGP6UoNtZTqZr6rMsPME4Jt2OW7z6mwMuPdM7g2a8nGl+C+iLzLzydd3xp/fJDMy6mA2A4gtb4wZuAhewfsrQA7nP4PiKCeGOYB7RN6+9o6/Xjk+b2wSGwdIBu+LptSAkjjVT/+uSXTn2wYDGUJh4AyK7sBg+/UOxM2N3oFb4tplSuc2wwq4s08xHoPY/zadH52rz4SwiTepN09BGB94qI14JHkpHUOrvY56jPpx5mnSoSJOaI5eBw8EqYNOz//Nikvw0yZXanGvjyui8IL7/29cwy71lPI2zJeVrcE3PRuYENEbKALYng7VtPDl+UjdA6Ti1/Xdr
-                </CertificatePem>
-            </Key>
-        </Keys>
-        <IDP entityID="idp"
-             signatureAlgorithm="RSA_SHA256"
-             signatureCanonicalizationMethod="http://www.w3.org/2001/10/xml-exc-c14n#">
-            <SingleSignOnService signRequest="true"
-                                 validateResponseSignature="true"
-                                 validateAssertionSignature="false"
-                                 requestBinding="POST"
-                                 bindingUrl="https://keycloak:8443/auth/realms/Demo/protocol/saml"/>
-            <SingleLogoutService signRequest="true"
-                                 signResponse="true"
-                                 validateRequestSignature="true"
-                                 validateResponseSignature="true"
-                                 requestBinding="POST"
-                                 responseBinding="POST"
-                                 postBindingUrl="https://keycloak:8443/auth/realms/Demo/protocol/saml"
-                                 redirectBindingUrl="https://keycloak:8443/auth/realms/Demo/protocol/saml"/>
-        </IDP>
-    </SP>
-</keycloak-saml-adapter>
+<?xml version="1.0" encoding="UTF-8"?>
+<EntityDescriptor entityID="https://keycloak:8443/auth/realms/Demo"
+                   xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+                   xmlns:dsig="http://www.w3.org/2000/09/xmldsig#"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <IDPSSODescriptor WantAuthnRequestsSigned="true"
+      protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <SingleLogoutService
+         Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+         Location="https://keycloak:8443/auth/realms/Demo/protocol/saml" />
+   <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+   <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+   <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+   <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+         Location="https://keycloak:8443/auth/realms/Demo/protocol/saml" />
+      <KeyDescriptor use="signing">
+        <dsig:KeyInfo>
+          <dsig:KeyName>EqgAQudbkWUx_dbRFq1-5RcWPGue5UtBvsuqUoMGKdE</dsig:KeyName>
+          <dsig:X509Data>
+            <dsig:X509Certificate>MIIClzCCAX8CBgFl4C3+oTANBgkqhkiG9w0BAQsFADAPMQ0wCwYDVQQDDAREZW1vMB4XDTE4MDkxNjAyMTg1NVoXDTI4MDkxNjAyMjAzNVowDzENMAsGA1UEAwwERGVtbzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAIm7aWExJl7+YlNCmoX4HIrtZHMRTx5iurR+XejkdiqTiyRpIoPhbcDI8YZTRFl9kfiDdrFVacwm5Lw4WzH7vFzSumK/JuQCxTu2FOiRQDa65Iy34NPxN0DpJ5rho56BtxSXu9FkIwfwl6w54fCEYFSKwYZXyMUX1YJk7j1UD+1Hnhqv+JblhNcVAFyvyACazwdqiyp0fCYZVtrRICTKXrHFrlNlIhyPA40C7smX1byba0jUL46V7xgHmJqPgIx574pnrE0n3YXjCUfFIffF3JF+Mdgzaf7fhqWz8g/gBP30QOiMmZcl6V2Zt5bv8HIoxhmd0JMdzZ4Ckj/AOSjvCGECAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAgUIDl3aAyKkzbVp6FNQCIKjplZ1WPnq5aNHqeOiMgfYbiB/lm1qLfAEBHAU9MNZ5tGk+IYujGb/5YalL3FkiLbfg21kgXvMMGMoqjKHBv7hVPSDscANasQhsRacnu3MMRhIXTYH6BrPe7LiHkEA6cbeQFZjlG74eaEsjCys37bim93CnEMyfz/Ak0vmHjhJKIxhrT3HTGwGxdycURWK2GLeRNkIh9FDjVIWxJ1twDhR9tM2EnDZEZ95BJHIiTGFM2CYUrX3hbqa2p+Zt1Y6LjxmkYDnhT8zfGk4lDd7QSN2etsTXzUAzsFYyAhz/NbL0EXB44BKRKOuy90hnNgVBKg==</dsig:X509Certificate>
+          </dsig:X509Data>
+        </dsig:KeyInfo>
+      </KeyDescriptor>
+   </IDPSSODescriptor>
+</EntityDescriptor>
