@@ -37,6 +37,9 @@ services:
         ELK_VERSION: 6.4.0
     volumes:
       - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+      - ./certs/ca.crt:/usr/share/kibana/config/ca.crt:ro
+      - ./certs/client.crt:/usr/share/kibana/config/client.crt:ro
+      - ./certs/client.key:/usr/share/kibana/config/client.key:ro
     ports:
       - "5601:5601"
     networks:
