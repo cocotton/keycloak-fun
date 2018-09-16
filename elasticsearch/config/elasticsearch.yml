@@ -38,6 +38,6 @@ xpack.security.authc.realms.saml1:
   sp.entity_id:  "kibana-saml"
   sp.acs: "https://kibana:5601/api/security/v1/saml"
   sp.logout: "https://kibana:5601/logout"
-  attributes.principal: "nameid:persistent"
+  attributes.principal: "email"
   attributes.groups: "Groups"
   attributes.mail: "nameid:emailAddress"
