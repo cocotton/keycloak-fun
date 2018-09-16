@@ -3,7 +3,7 @@
                    xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
                    xmlns:dsig="http://www.w3.org/2000/09/xmldsig#"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-   <IDPSSODescriptor WantAuthnRequestsSigned="true"
+   <IDPSSODescriptor WantAuthnRequestsSigned="false"
       protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
       <SingleLogoutService
          Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
