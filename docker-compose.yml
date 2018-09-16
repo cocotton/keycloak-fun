@@ -6,6 +6,12 @@ services:
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: ch4ng3m3!
+    environment:
+      X509_CA_BUNDLE: /etc/x509/https/ca.crt
+    volumes:
+      - ./certs/ca.crt:/etc/x509/https/ca.crt:ro
+      - ./certs/client.crt:/etc/x509/https/tls.crt:ro
+      - ./certs/client.key:/etc/x509/https/tls.key:ro
     ports:
     - "8443:8443"
     networks:
