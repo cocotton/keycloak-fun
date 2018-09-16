@@ -23,6 +23,7 @@ echo "Creating index pattern..."
 curl -k --user "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}" -s -XPOST -H "Content-Type: application/json" -H "kbn-xsrf: index_pattern" \
     "https://kibana:5601/api/saved_objects/index-pattern/bank*" \
     -d "{\"attributes\":{\"title\":\"bank*\"}}"
+echo ""
 echo "Done"
 
 echo "Script completed. Exiting."
