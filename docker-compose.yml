@@ -6,10 +6,63 @@ services:
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: ch4ng3m3!
+      X509_CA_BUNDLE: /etc/x509/https/ca.crt
+    volumes:
+      - ./certs/ca.crt:/etc/x509/https/ca.crt:ro
+      - ./certs/client.crt:/etc/x509/https/tls.crt:ro
+      - ./certs/client.key:/etc/x509/https/tls.key:ro
     ports:
-    - "443:8443"
+    - "8443:8443"
     networks:
     - keycloak
+
+  elasticsearch:
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: 6.4.0
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./certs/ca.crt:/usr/share/elasticsearch/config/ca.crt:ro
+      - ./certs/client.crt:/usr/share/elasticsearch/config/client.crt:ro
+      - ./certs/client.key:/usr/share/elasticsearch/config/client.key:ro
+    ports:
+      - "9200:9200"
+    environment:
+      ES_JAVA_OPTS: "-Xmx2048m -Xms2048m"
+      ELASTIC_PASSWORD: ch4ng3m3!
+    networks:
+      - keycloak
+
+  kibana:
+    build:
+      context: kibana/
+      args:
+        ELK_VERSION: 6.4.0
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+      - ./certs/ca.crt:/usr/share/kibana/config/ca.crt:ro
+      - ./certs/client.crt:/usr/share/kibana/config/client.crt:ro
+      - ./certs/client.key:/usr/share/kibana/config/client.key:ro
+    ports:
+      - "5601:5601"
+    networks:
+      - keycloak
+    depends_on:
+      - elasticsearch
+
+  elasticsearch-data:
+    build:
+      context: elasticsearch-data/
+    environment:
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: ch4ng3m3!
+    networks:
+      - keycloak
+    depends_on:
+      - elasticsearch
+      - kibana
+
   oidc-expressjs:
     build:
       context: oidc-expressjs/
