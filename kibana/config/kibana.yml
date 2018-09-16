@@ -18,3 +18,12 @@ server.ssl.enabled: true
 server.ssl.key: /usr/share/kibana/config/client.key
 server.ssl.certificate: /usr/share/kibana/config/client.crt
 elasticsearch.ssl.certificateAuthorities: [ "/usr/share/kibana/config/ca.crt" ]
+
+## Saml configuration
+#
+xpack.security.authProviders: [saml]
+xpack.security.public:
+  protocol: https
+  hostname: kibana
+  port: 5601
+server.xsrf.whitelist: [/api/security/v1/saml]
