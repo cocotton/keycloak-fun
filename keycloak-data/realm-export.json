@@ -561,7 +561,7 @@
       "surrogateAuthRequired": false,
       "enabled": true,
       "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
+      "secret": "5cee68f3-d0fb-4488-94da-da5d0d049557",
       "redirectUris": [
         "http://express-oidc:3000/*"
       ],
