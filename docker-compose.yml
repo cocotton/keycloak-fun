@@ -64,9 +64,9 @@ services:
       - elasticsearch
       - kibana
 
-  oidc-expressjs:
+  express-oidc:
     build:
-      context: oidc-expressjs/
+      context: express-oidc/
     ports:
     - "3000:3000"
     networks:
