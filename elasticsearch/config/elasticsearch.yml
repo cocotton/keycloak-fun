@@ -20,8 +20,24 @@ discovery.type: single-node
 #
 xpack.license.self_generated.type: trial
 xpack.security.enabled: true
-xpack.security.http.ssl.enabled: true
 xpack.security.transport.ssl.enabled: true
 xpack.ssl.key: /usr/share/elasticsearch/config/client.key
 xpack.ssl.certificate: /usr/share/elasticsearch/config/client.crt
 xpack.ssl.certificate_authorities: /usr/share/elasticsearch/config/ca.crt
+xpack.security.http.ssl.enabled: true
+xpack.security.http.ssl.key: /usr/share/elasticsearch/config/client.key
+xpack.security.http.ssl.certificate: /usr/share/elasticsearch/config/client.crt
+xpack.security.http.ssl.certificate_authorities: [ "/usr/share/elasticsearch/config/ca.crt" ]
+xpack.security.authc.token.enabled: true
+
+xpack.security.authc.realms.saml1:
+  type: saml
+  order: 1
+  idp.metadata.path: kibana-saml-idp.xml
+  idp.entity_id: "https://keycloak:8443/auth/realms/Demo"
+  sp.entity_id:  "kibana-saml"
+  sp.acs: "https://kibana:5601/api/security/v1/saml"
+  sp.logout: "https://kibana:5601/logout"
+  attributes.principal: "email"
+  attributes.groups: "Groups"
+  attributes.mail: "nameid:emailAddress"
