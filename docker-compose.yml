@@ -2,7 +2,8 @@ version: '3'
 
 services:
   keycloak:
-    image: jboss/keycloak
+    build:
+      context: keycloak
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: ch4ng3m3!
