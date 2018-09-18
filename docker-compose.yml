@@ -61,9 +61,9 @@ services:
     networks:
     - keycloak
 
-  elasticsearch-data:
+  elasticsearch-setup:
     build:
-      context: elasticsearch-data/
+      context: elasticsearch-setup/
     environment:
       ELASTIC_USERNAME: elastic
       ELASTIC_PASSWORD: ch4ng3m3!
