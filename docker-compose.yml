@@ -52,6 +52,14 @@ services:
     depends_on:
       - elasticsearch
 
+  express-oidc:
+    build:
+      context: express-oidc/
+    ports:
+    - "3000:3000"
+    networks:
+    - keycloak
+
   elasticsearch-data:
     build:
       context: elasticsearch-data/
@@ -64,13 +72,16 @@ services:
       - elasticsearch
       - kibana
 
-  express-oidc:
+  keycloak-setup:
     build:
-      context: express-oidc/
-    ports:
-    - "3000:3000"
+      context: keycloak-setup/
+    environment:
+      KEYCLOAK_USERNAME: admin
+      KEYCLOAK_PASSWORD: ch4ng3m3!
     networks:
-    - keycloak
+      - keycloak
+    depends_on:
+      - keycloak
 
 networks:
   keycloak:
