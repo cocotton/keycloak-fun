@@ -3,6 +3,6 @@ FROM alpine:3.8
 RUN apk --no-cache add jq
 
 ADD realm-export.json /root/
-ADD create_user.sh /root/
+ADD keycloak_setup.sh /root/
 
-ENTRYPOINT [ "/root/create_user.sh" ]
+ENTRYPOINT [ "/root/keycloak_setup.sh" ]
