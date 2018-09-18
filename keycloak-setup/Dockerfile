@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-RUN apk --no-cache add jq
+RUN apk --no-cache add curl jq
 
 ADD realm-export.json /root/
 ADD keycloak_setup.sh /root/
