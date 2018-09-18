@@ -2,7 +2,7 @@
 
 bearer_token=`curl -ks "https://keycloak:8443/auth/realms/master/protocol/openid-connect/token" -d "client_id=admin-cli" -d "username=${KEYCLOAK_USERNAME}" -d "password=${KEYCLOAK_PASSWORD}" -d "grant_type=password" | jq -r '.access_token'`
 
-curl -vvvvk -XPOST -H "Authorization: bearer ${bearer_token}" -H "Content-Type: application/json" "https://keycloak:8443/auth/admin/realms/Demo/users" \
+curl -k -XPOST -H "Authorization: bearer ${bearer_token}" -H "Content-Type: application/json" "https://keycloak:8443/auth/admin/realms/Demo/users" \
   -d '{
         "username": "demo",
         "firstName": "Demo",
@@ -19,3 +19,6 @@ curl -vvvvk -XPOST -H "Authorization: bearer ${bearer_token}" -H "Content-Type: 
     	    "value": "ch4ng3m3!"
         }]
       }'
+
+curl -k -XPOST -H "Authorization: bearer ${bearer_token}" -H "Content-Type: application/json" "https://keycloak:8443/auth/admin/realms" \
+ -d @realm-export.json
