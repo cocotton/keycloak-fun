@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Waiting for keycloak..."
-until curl -k https://keycloak:8443 > /dev/null 2>&1; do echo "."; sleep 2; done
+until curl -k https://keycloak:8443/auth/ > /dev/null 2>&1; do echo "."; sleep 2; done
 echo "\nDone"
 
 echo "Getting bearer token..."
