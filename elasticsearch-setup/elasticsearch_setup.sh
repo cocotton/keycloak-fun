@@ -22,7 +22,7 @@ curl -ks --user "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}" -XPOST -H "Content-Typ
 
 echo "Creating role mappings..."
 curl -ks --user "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}" -XPUT -H "Content-Type: application/json" \
-  "https://kibana:5601/_xpack/security/role_mapping/saml-kibana" \
+  "https://elasticsearch:9200/_xpack/security/role_mapping/saml-kibana" \
   -d '{"roles": [ "kibana_user" ],"enabled": true,"rules": {"field": { "realm.name": "saml1" }}}'
 
 echo ""
