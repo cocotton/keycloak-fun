@@ -21,7 +21,7 @@ elasticsearch.ssl.certificateAuthorities: [ "/usr/share/kibana/config/ca.crt" ]
 
 ## Saml configuration
 #
-xpack.security.authProviders: [ saml, native ]
+xpack.security.authProviders: [ saml, basic ]
 xpack.security.public:
   protocol: https
   hostname: kibana

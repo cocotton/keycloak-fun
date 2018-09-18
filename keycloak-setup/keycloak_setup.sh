@@ -8,7 +8,7 @@ bearer_token=`curl -ks "https://keycloak:8443/auth/realms/master/protocol/openid
 
 echo "Uploading Demo realm..."
 curl -k -XPOST -H "Authorization: bearer ${bearer_token}" -H "Content-Type: application/json" "https://keycloak:8443/auth/admin/realms" \
- -d @realm-export.json
+ -d @/root/realm-export.json
 
 echo "Creating demo user..."
 curl -ks -XPOST -H "Authorization: bearer ${bearer_token}" -H "Content-Type: application/json" "https://keycloak:8443/auth/admin/realms/Demo/users" \

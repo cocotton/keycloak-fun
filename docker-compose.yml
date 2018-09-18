@@ -35,6 +35,8 @@ services:
       ELASTIC_PASSWORD: ch4ng3m3!
     networks:
       - keycloak
+    depends_on:
+      - keycloak
 
   kibana:
     build:
@@ -51,6 +53,7 @@ services:
     networks:
       - keycloak
     depends_on:
+      - keycloak
       - elasticsearch
 
   express-oidc:
@@ -70,6 +73,7 @@ services:
     networks:
       - keycloak
     depends_on:
+      - keycloak
       - elasticsearch
       - kibana
 
