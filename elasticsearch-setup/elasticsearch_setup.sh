@@ -24,13 +24,12 @@ curl -k --user "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}" -s -XPOST -H "Content-T
   "https://kibana:5601/api/saved_objects/index-pattern/bank*" \
   -d '{"attributes":{"title":"bank*"}}'
 echo ""
-echo "Done"
+echo "\nDone"
 
 echo "Creating role mappings..."
 curl -k --user "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}" -s -XPUT -H "Content-Type: application/json" \
   "https://kibana:5601/_xpack/security/role_mapping/saml-kibana" \
   -d '{"roles": [ "kibana_user" ],"enabled": true,"rules": {"field": { "realm.name": "saml1" }}}'
-echo ""
-echo "Done"
+echo "\nDone"
 
 echo "Script completed. Exiting."
