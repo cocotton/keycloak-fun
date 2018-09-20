@@ -12,6 +12,8 @@ until curl -k https://elasticsearch:9200 > /dev/null 2>&1; do echo "."; sleep 2;
 echo "Waiting for Kibana to come online..."
 until curl -k https://kibana:5601 > /dev/null 2>&1; do echo "."; sleep 2; done
 
+sleep 5
+
 echo "Uploading test data..."
 curl -ks --user "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}" -XPOST -H 'Content-Type: application/x-ndjson' 'https://elasticsearch:9200/bank/account/_bulk?pretty' --data-binary @/root/accounts.json
 
