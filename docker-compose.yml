@@ -17,6 +17,17 @@ services:
     networks:
     - keycloak
 
+  keycloak-setup:
+    build:
+      context: keycloak-setup/
+    environment:
+      KEYCLOAK_USERNAME: admin
+      KEYCLOAK_PASSWORD: ch4ng3m3!
+    networks:
+      - keycloak
+    depends_on:
+      - keycloak
+
   elasticsearch:
     build:
       context: elasticsearch/
@@ -35,7 +46,20 @@ services:
     networks:
       - keycloak
     depends_on:
+      - keycloak-setup
+
+  elasticsearch-setup:
+    build:
+      context: elasticsearch-setup/
+    environment:
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: ch4ng3m3!
+    networks:
       - keycloak
+    depends_on:
+      - keycloak-setup
+      - elasticsearch
+      - kibana
 
   kibana:
     build:
@@ -52,7 +76,7 @@ services:
     networks:
       - keycloak
     depends_on:
-      - keycloak
+      - keycloak-setup
       - elasticsearch
 
   express-oidc:
@@ -62,30 +86,6 @@ services:
     - "3000:3000"
     networks:
     - keycloak
-
-  elasticsearch-setup:
-    build:
-      context: elasticsearch-setup/
-    environment:
-      ELASTIC_USERNAME: elastic
-      ELASTIC_PASSWORD: ch4ng3m3!
-    networks:
-      - keycloak
-    depends_on:
-      - keycloak
-      - elasticsearch
-      - kibana
-
-  keycloak-setup:
-    build:
-      context: keycloak-setup/
-    environment:
-      KEYCLOAK_USERNAME: admin
-      KEYCLOAK_PASSWORD: ch4ng3m3!
-    networks:
-      - keycloak
-    depends_on:
-      - keycloak
 
 networks:
   keycloak:
