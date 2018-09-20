@@ -3,6 +3,6 @@ FROM alpine:3.8
 RUN apk --no-cache add curl busybox-extras
 
 COPY accounts.zip /root/
-COPY upload-data.sh /root/
+COPY elasticsearch_setup.sh /root/
 
-ENTRYPOINT /root/upload-data.sh
+ENTRYPOINT /root/elasticsearch_setup.sh

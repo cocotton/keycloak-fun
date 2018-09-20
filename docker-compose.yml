@@ -2,7 +2,8 @@ version: '3'
 
 services:
   keycloak:
-    image: jboss/keycloak
+    build:
+      context: keycloak
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: ch4ng3m3!
@@ -16,6 +17,17 @@ services:
     networks:
     - keycloak
 
+  keycloak-setup:
+    build:
+      context: keycloak-setup/
+    environment:
+      KEYCLOAK_USERNAME: admin
+      KEYCLOAK_PASSWORD: ch4ng3m3!
+    networks:
+      - keycloak
+    depends_on:
+      - keycloak
+
   elasticsearch:
     build:
       context: elasticsearch/
@@ -23,7 +35,6 @@ services:
         ELK_VERSION: 6.4.0
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-      - ./elasticsearch/config/kibana-saml-idp.xml:/usr/share/elasticsearch/config/kibana-saml-idp.xml:ro
       - ./certs/ca.crt:/usr/share/elasticsearch/config/ca.crt:ro
       - ./certs/client.crt:/usr/share/elasticsearch/config/client.crt:ro
       - ./certs/client.key:/usr/share/elasticsearch/config/client.key:ro
@@ -34,6 +45,21 @@ services:
       ELASTIC_PASSWORD: ch4ng3m3!
     networks:
       - keycloak
+    depends_on:
+      - keycloak-setup
+
+  elasticsearch-setup:
+    build:
+      context: elasticsearch-setup/
+    environment:
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: ch4ng3m3!
+    networks:
+      - keycloak
+    depends_on:
+      - keycloak-setup
+      - elasticsearch
+      - kibana
 
   kibana:
     build:
@@ -50,19 +76,8 @@ services:
     networks:
       - keycloak
     depends_on:
+      - keycloak-setup
       - elasticsearch
-
-  elasticsearch-data:
-    build:
-      context: elasticsearch-data/
-    environment:
-      ELASTIC_USERNAME: elastic
-      ELASTIC_PASSWORD: ch4ng3m3!
-    networks:
-      - keycloak
-    depends_on:
-      - elasticsearch
-      - kibana
 
   express-oidc:
     build:
